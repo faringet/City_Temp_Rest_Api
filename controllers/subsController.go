@@ -1,10 +1,32 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"CitysTempRest/initializers"
+	"CitysTempRest/models"
+	"github.com/gin-gonic/gin"
+)
 
 func SubsCreate(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "pong",
-	})
+	// Get data off req body
+	var body struct {
+		City        string
+		Temperature float64
+	}
 
+	c.Bind(&body)
+
+	// Create a sub
+	sub := models.Sub{City: body.City}
+
+	result := initializers.DB.Create(&sub)
+
+	if result.Error != nil {
+		c.Status(400)
+		return
+	}
+
+	// Return it
+	c.JSON(200, gin.H{
+		"sub": sub,
+	})
 }
