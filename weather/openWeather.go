@@ -54,7 +54,7 @@ func GetCityID(m map[int]string, val string) int {
 	return 0
 }
 
-func GetTemperature(c int) interface{} {
+func GetTemperature(c int) float64 {
 	apiKey := os.Getenv("OW_KEY")
 
 	cityID := strconv.Itoa(c)
@@ -78,7 +78,14 @@ func GetTemperature(c int) interface{} {
 	err = json.Unmarshal(body, &data)
 	if err != nil {
 		fmt.Println(err)
-
 	}
-	return data["main"].(map[string]interface{})["temp"]
+	// Type switch
+	i := data["main"].(map[string]interface{})["temp"]
+	f, ok := i.(float64)
+	if ok {
+	} else {
+		fmt.Println("i is not a float64")
+	}
+
+	return f
 }

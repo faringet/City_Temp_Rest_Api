@@ -3,6 +3,7 @@ package controllers
 import (
 	"CitysTempRest/initializers"
 	"CitysTempRest/models"
+	"CitysTempRest/weather"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,6 +30,12 @@ func SubsCreate(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"sub": sub,
 	})
+
+	//Put temperature to users City
+	var a = weather.GetTemperature(weather.GetCityID(weather.ReturnMap(), sub.City))
+	initializers.DB.First(&sub, sub.ID)
+	initializers.DB.Model(&sub).Updates(models.Sub{Temperature: a})
+
 }
 
 func SubsIndex(c *gin.Context) {
@@ -73,7 +80,8 @@ func SubsUpdate(c *gin.Context) {
 	initializers.DB.First(&sub, id)
 
 	// Update it
-	initializers.DB.Model(&sub).Updates(models.Sub{City: body.City})
+	var a = weather.GetTemperature(weather.GetCityID(weather.ReturnMap(), sub.City))
+	initializers.DB.Model(&sub).Updates(models.Sub{City: body.City, Temperature: a})
 
 	// Respond with it
 	c.JSON(200, gin.H{
