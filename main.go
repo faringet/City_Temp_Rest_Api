@@ -16,6 +16,7 @@ func main() {
 
 	r.POST("/subs", controllers.SubsCreate)
 	r.GET("/subs", controllers.SubsIndex)
+	r.GET("/subs/:id", controllers.SubsShow)
 
 	r.Run()
 }

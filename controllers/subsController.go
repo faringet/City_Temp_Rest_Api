@@ -40,5 +40,18 @@ func SubsIndex(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"sub": subs,
 	})
+}
 
+func SubsShow(c *gin.Context) {
+	// Get id off url
+	id := c.Param("id")
+
+	// Get the subs
+	var sub models.Sub
+	initializers.DB.First(&sub, id)
+
+	// Respond with them
+	c.JSON(200, gin.H{
+		"sub": sub,
+	})
 }
