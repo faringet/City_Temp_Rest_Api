@@ -15,6 +15,7 @@ func main() {
 	r := gin.Default()
 
 	r.POST("/subs", controllers.SubsCreate)
+	r.PUT("/subs/:id", controllers.SubsUpdate)
 	r.GET("/subs", controllers.SubsIndex)
 	r.GET("/subs/:id", controllers.SubsShow)
 

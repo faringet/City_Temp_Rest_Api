@@ -55,3 +55,28 @@ func SubsShow(c *gin.Context) {
 		"sub": sub,
 	})
 }
+
+func SubsUpdate(c *gin.Context) {
+	// Get the id off the url
+	id := c.Param("id")
+
+	// Get the data off req body
+	var body struct {
+		City        string
+		Temperature float64
+	}
+
+	c.Bind(&body)
+
+	// Find the sub were updating
+	var sub models.Sub
+	initializers.DB.First(&sub, id)
+
+	// Update it
+	initializers.DB.Model(&sub).Updates(models.Sub{City: body.City})
+
+	// Respond with it
+	c.JSON(200, gin.H{
+		"sub": sub,
+	})
+}
