@@ -47,7 +47,7 @@ func SubsCreate(c *gin.Context) {
 
 // GetSub godoc
 // @Summary Get all citys from subscription
-// @Description Takes a city and temperature JSON from DB. Return all city's weather temperature.
+// @Description Takes a citys and temperature JSON from DB. Return all city's weather temperature.
 // Produce json
 // @Success 200 {array} models.Sub
 // @Router / [get]
@@ -62,6 +62,13 @@ func SubsIndex(c *gin.Context) {
 	})
 }
 
+// GetSub godoc
+// @Summary Get single city from subscription
+// @Description Takes a city and temperature JSON from DB. Return city weather temperature.
+// Produce json
+// @Param id path string true "search city by id"
+// @Success 200 {object} models.Sub
+// @Router /{id} [get]
 func SubsShow(c *gin.Context) {
 	// Get id off url
 	id := c.Param("id")
