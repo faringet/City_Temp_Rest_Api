@@ -109,6 +109,13 @@ func SubsUpdate(c *gin.Context) {
 	})
 }
 
+// GetSub godoc
+// @Summary Delete single city from subscription
+// @Description Delete a city and temperature from DB.
+// Produce json
+// @Param id path string true "search city by id"
+// @Success 200 {object} models.Sub
+// @Router /{id} [delete]
 func SubsDelete(c *gin.Context) {
 	// Get the id off the url
 	id := c.Param("id")
