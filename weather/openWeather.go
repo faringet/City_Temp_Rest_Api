@@ -40,3 +40,13 @@ func ReturnMap() map[int]string {
 
 	return locationMap
 }
+
+func GetCityID(m map[int]string, val string) int {
+	for k, v := range m {
+		if v == val {
+			return k
+		}
+	}
+	// Return an empty string if the value is not present
+	return 0
+}
