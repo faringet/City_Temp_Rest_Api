@@ -83,6 +83,14 @@ func SubsShow(c *gin.Context) {
 	})
 }
 
+// PutSub godoc
+// @Summary Update single city
+// @Description Update single city.
+// Produce json
+// @Param id path string true "search city by id"
+// @Param city body models.Sub  true  "Sub JSON"
+// @Success 200 {object} models.Sub
+// @Router /{id} [put]
 func SubsUpdate(c *gin.Context) {
 	// Get the id off the url
 	id := c.Param("id")
@@ -109,7 +117,7 @@ func SubsUpdate(c *gin.Context) {
 	})
 }
 
-// GetSub godoc
+// DeleteSub godoc
 // @Summary Delete single city from subscription
 // @Description Delete a city and temperature from DB.
 // Produce json

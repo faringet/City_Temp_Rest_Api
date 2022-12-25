@@ -14,7 +14,7 @@ func init() {
 	initializers.ConnectToDB()
 }
 
-// @title           Temperature By City Service
+// @title           Temperature City Service
 // @version         1.0
 // @description     A weather service API in Go using Gin framework.
 
