@@ -4,6 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net/http"
+	"os"
+	"strconv"
 )
 
 type Location struct {
@@ -49,4 +52,33 @@ func GetCityID(m map[int]string, val string) int {
 	}
 	// Return an empty string if the value is not present
 	return 0
+}
+
+func GetTemperature(c int) interface{} {
+	apiKey := os.Getenv("OW_KEY")
+
+	cityID := strconv.Itoa(c)
+
+	// Make the API request
+	resp, err := http.Get("https://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&units=metric&appid=" + apiKey)
+	if err != nil {
+		fmt.Println(err)
+
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// Unmarshal the JSON response into a map
+	var data map[string]interface{}
+	err = json.Unmarshal(body, &data)
+	if err != nil {
+		fmt.Println(err)
+
+	}
+	return data["main"].(map[string]interface{})["temp"]
 }
