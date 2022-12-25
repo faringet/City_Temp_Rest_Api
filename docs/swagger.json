@@ -1,0 +1,136 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A weather service API in Go using Gin framework.",
+        "title": "Temperature City Service",
+        "contact": {
+            "name": "Davydov Mikhail",
+            "url": "https://github.com/faringet/City_Temp_Rest_Api",
+            "email": "mik.davydov14@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/subs",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Takes a citys and temperature JSON from DB. Return all city's weather temperature.",
+                "summary": "Get all citys from subscription",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Sub"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Takes a city JSON and store in DB. Return city's weather temperature.",
+                "summary": "Add a new city to a subscription",
+                "parameters": [
+                    {
+                        "description": "Sub JSON",
+                        "name": "city",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Sub"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Sub"
+                        }
+                    }
+                }
+            }
+        },
+        "/{id}": {
+            "get": {
+                "description": "Takes a city and temperature JSON from DB. Return city weather temperature.",
+                "summary": "Get single city from subscription",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "search city by id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Sub"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update single city.",
+                "summary": "Update single city",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "search city by id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Sub JSON",
+                        "name": "city",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Sub"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Sub"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a city and temperature from DB.",
+                "summary": "Delete single city from subscription",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "search city by id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Sub"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Sub": {
+            "type": "object"
+        }
+    }
+}

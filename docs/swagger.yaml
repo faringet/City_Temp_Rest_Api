@@ -1,0 +1,92 @@
+basePath: /subs
+definitions:
+  models.Sub:
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: mik.davydov14@gmail.com
+    name: Davydov Mikhail
+    url: https://github.com/faringet/City_Temp_Rest_Api
+  description: A weather service API in Go using Gin framework.
+  title: Temperature City Service
+  version: "1.0"
+paths:
+  /:
+    get:
+      description: Takes a citys and temperature JSON from DB. Return all city's weather
+        temperature.
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Sub'
+            type: array
+      summary: Get all citys from subscription
+    post:
+      description: Takes a city JSON and store in DB. Return city's weather temperature.
+      parameters:
+      - description: Sub JSON
+        in: body
+        name: city
+        required: true
+        schema:
+          $ref: '#/definitions/models.Sub'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Sub'
+      summary: Add a new city to a subscription
+  /{id}:
+    delete:
+      description: Delete a city and temperature from DB.
+      parameters:
+      - description: search city by id
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Sub'
+      summary: Delete single city from subscription
+    get:
+      description: Takes a city and temperature JSON from DB. Return city weather
+        temperature.
+      parameters:
+      - description: search city by id
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Sub'
+      summary: Get single city from subscription
+    put:
+      description: Update single city.
+      parameters:
+      - description: search city by id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Sub JSON
+        in: body
+        name: city
+        required: true
+        schema:
+          $ref: '#/definitions/models.Sub'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Sub'
+      summary: Update single city
+swagger: "2.0"
