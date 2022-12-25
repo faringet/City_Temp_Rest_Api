@@ -7,6 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// PostSub godoc
+// @Summary Add a new city to a subscription
+// @Description Takes a city JSON and store in DB. Return city's weather temperature.
+// Produce json
+// @Param city body models.Sub  true  "Sub JSON"
+// @Success 200 {object} models.Sub
+// @Router / [post]
 func SubsCreate(c *gin.Context) {
 	// Get data off req body
 	var body struct {
@@ -38,6 +45,12 @@ func SubsCreate(c *gin.Context) {
 
 }
 
+// GetSub godoc
+// @Summary Get all citys from subscription
+// @Description Takes a city and temperature JSON from DB. Return all city's weather temperature.
+// Produce json
+// @Success 200 {array} models.Sub
+// @Router / [get]
 func SubsIndex(c *gin.Context) {
 	// Get the subs
 	var subs []models.Sub
