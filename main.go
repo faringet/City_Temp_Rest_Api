@@ -13,6 +13,9 @@ func init() {
 
 func main() {
 	r := gin.Default()
+
 	r.POST("/subs", controllers.SubsCreate)
+	r.GET("/subs", controllers.SubsIndex)
+
 	r.Run()
 }

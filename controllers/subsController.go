@@ -30,3 +30,15 @@ func SubsCreate(c *gin.Context) {
 		"sub": sub,
 	})
 }
+
+func SubsIndex(c *gin.Context) {
+	// Get the subs
+	var subs []models.Sub
+	initializers.DB.Find(&subs)
+
+	// Respond with them
+	c.JSON(200, gin.H{
+		"sub": subs,
+	})
+
+}
