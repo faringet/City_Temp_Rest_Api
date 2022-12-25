@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  citys-temp-rest:
+    build: ./
+    command: ./citys-temp-rest
+    ports:
+      - 3000:3000
+    depends_on:
+      - psql-db-container
+    environment:
+      - DB_PASSWORD=password
+
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./.database/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5436:5432
+
+
+
