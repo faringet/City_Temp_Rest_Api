@@ -80,3 +80,15 @@ func SubsUpdate(c *gin.Context) {
 		"sub": sub,
 	})
 }
+
+func SubsDelete(c *gin.Context) {
+	// Get the id off the url
+	id := c.Param("id")
+
+	// Delete the subs
+	initializers.DB.Delete(&models.Sub{}, id)
+
+	// Respond
+	c.Status(200)
+
+}

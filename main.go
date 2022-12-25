@@ -18,6 +18,7 @@ func main() {
 	r.PUT("/subs/:id", controllers.SubsUpdate)
 	r.GET("/subs", controllers.SubsIndex)
 	r.GET("/subs/:id", controllers.SubsShow)
+	r.DELETE("/subs/:id", controllers.SubsDelete)
 
 	r.Run()
 }
