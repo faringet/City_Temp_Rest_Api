@@ -4,6 +4,7 @@ import (
 	"CitysTempRest/controllers"
 	_ "CitysTempRest/docs"
 	"CitysTempRest/initializers"
+	"CitysTempRest/logging"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -12,6 +13,9 @@ import (
 func init() {
 	initializers.LoadEnvVariables()
 	initializers.ConnectToDB()
+
+	logger := logging.GetLogger()
+	logger.Info("Start app")
 }
 
 // @title           Temperature City Service

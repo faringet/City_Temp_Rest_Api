@@ -1,0 +1,1 @@
+time="2023-01-09T21:57:11+03:00" level=info msg="Start app" func="github.com/sirupsen/logrus.(*Entry).Info()" file="entry.go:285"
