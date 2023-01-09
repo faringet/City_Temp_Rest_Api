@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"CitysTempRest/initializers"
+	"CitysTempRest/logging"
 	"CitysTempRest/models"
 	"CitysTempRest/weather"
 	"github.com/gin-gonic/gin"
@@ -15,6 +16,8 @@ import (
 // @Success 200 {object} models.Sub
 // @Router / [post]
 func SubsCreate(c *gin.Context) {
+	logger := logging.GetLogger()
+	logger.Info("SubsCreate worked")
 	// Get data off req body
 	var body struct {
 		City        string
@@ -52,6 +55,8 @@ func SubsCreate(c *gin.Context) {
 // @Success 200 {array} models.Sub
 // @Router / [get]
 func SubsIndex(c *gin.Context) {
+	logger := logging.GetLogger()
+	logger.Info("SubsIndex worked")
 	// Get the subs
 	var subs []models.Sub
 	initializers.DB.Find(&subs)
@@ -70,6 +75,8 @@ func SubsIndex(c *gin.Context) {
 // @Success 200 {object} models.Sub
 // @Router /{id} [get]
 func SubsShow(c *gin.Context) {
+	logger := logging.GetLogger()
+	logger.Info("SubsShow worked")
 	// Get id off url
 	id := c.Param("id")
 
@@ -92,6 +99,8 @@ func SubsShow(c *gin.Context) {
 // @Success 200 {object} models.Sub
 // @Router /{id} [put]
 func SubsUpdate(c *gin.Context) {
+	logger := logging.GetLogger()
+	logger.Info("SubsUpdate worked")
 	// Get the id off the url
 	id := c.Param("id")
 
@@ -125,6 +134,8 @@ func SubsUpdate(c *gin.Context) {
 // @Success 200 {object} models.Sub
 // @Router /{id} [delete]
 func SubsDelete(c *gin.Context) {
+	logger := logging.GetLogger()
+	logger.Info("SubsDelete worked")
 	// Get the id off the url
 	id := c.Param("id")
 
