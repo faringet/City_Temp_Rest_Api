@@ -7,6 +7,8 @@ ___
 - работа с БД и миграциями с помощью [**GORM**](https://gorm.io/docs/)
 - запись осуществляется в PostgreSQL
 - gin также пишет логи в консоль
+- логирование [**Logrus'ом**](https://github.com/sirupsen/logrus) 
+- тесты [**Testify**](https://github.com/stretchr/testify)
 - swagger документация
 ___
 ### Взаимодействие через запросы:
@@ -34,6 +36,3 @@ ___
  
 Для знакомства со всеми запросами [**линк на скрины из swagger'а**](https://github.com/faringet/City_Temp_Rest_Api/tree/master/swagger%20screenshots)
  
- 
-Планируется ввести полноценное логирование и тестирование в ближайшее время.
-
